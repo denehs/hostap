@@ -809,7 +809,8 @@ endif
 
 ifdef CONFIG_PCSC
 # PC/SC interface for smartcards (USIM, GSM SIM)
-L_CFLAGS += -DPCSC_FUNCS -I/usr/include/PCSC
+L_CFLAGS += -DPCSC_FUNCS
+INCLUDES += external/pcsc/pcsc-lite/src/PCSC
 OBJS += src/utils/pcsc_funcs.c
 # -lpthread may not be needed depending on how pcsc-lite was configured
 ifdef CONFIG_NATIVE_WINDOWS
@@ -1444,7 +1445,7 @@ ifneq ($(BOARD_WPA_SUPPLICANT_PRIVATE_LIB),)
 ##Build as part of wpa_supplicant build now
 ##LOCAL_STATIC_LIBRARIES += $(BOARD_WPA_SUPPLICANT_PRIVATE_LIB)
 endif
-LOCAL_SHARED_LIBRARIES := libc libcutils
+LOCAL_SHARED_LIBRARIES := libc libcutils libpcsclite libifdsmartcardapi
 ifeq ($(CONFIG_TLS), openssl)
 LOCAL_SHARED_LIBRARIES += libcrypto libssl
 endif
